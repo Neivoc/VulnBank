@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VulnBank — Transfer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="/dashboard.html" class="navbar-brand">
+            <div class="brand-icon">🏦</div>
+            <span>VulnBank</span>
+        </a>
+        <ul class="navbar-nav">
+            <li><a href="/dashboard.html">📊 Dashboard</a></li>
+            <li><a href="/transfer.html" class="active">💸 Transfer</a></li>
+            <li><a href="/search.html">🔍 Search</a></li>
+            <li><a href="/profile">👤 Profile</a></li>
+            <li><a href="/admin" id="adminLink" style="display:none;">⚙️ Admin</a></li>
+        </ul>
+        <div class="navbar-user">
+            <div class="user-info">
+                <div class="username" id="navUsername">User</div>
+                <span class="role-badge user" id="navRole">user</span>
+            </div>
+            <button class="btn btn-outline" onclick="logout()"
+                style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">Logout</button>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1>💸 Money Transfer</h1>
+            <p>Send money to other VulnBank accounts</p>
+        </div>
+
+        <div class="grid-2">
+            <div class="card">
+                <div class="card-header">
+                    <h3>New Transfer</h3>
+                </div>
+
+                <div id="alert" class="alert"></div>
+
+                <form id="transferForm">
+                    <div class="form-group">
+                        <label for="fromAccount">From Account</label>
+                        <select id="fromAccount" required>
+                            <option value="">Loading accounts...</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="toAccount">Destination Account Number</label>
+                        <input type="text" id="toAccount" placeholder="e.g. VB-2000-0001" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Amount ($)</label>
+                        <input type="number" id="amount" placeholder="0.00" min="0.01" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" id="description" placeholder="Payment description">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Send Transfer</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Transfer History</h3>
+                </div>
+                <div id="transferHistory">
+                    <p class="text-muted text-center" style="padding: 2rem;">Loading history...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>VulnBank © 2026 — All Rights Reserved</p>
+    </footer>
+
+    <script src="/js/utils.js"></script>
+    <script src="/js/transfer.js"></script>
+</body>
+
+</html>

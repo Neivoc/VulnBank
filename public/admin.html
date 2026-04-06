@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VulnBank — Admin Panel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="/dashboard.html" class="navbar-brand">
+            <div class="brand-icon">🏦</div>
+            <span>VulnBank</span>
+        </a>
+        <ul class="navbar-nav">
+            <li><a href="/dashboard.html">📊 Dashboard</a></li>
+            <li><a href="/transfer.html">💸 Transfer</a></li>
+            <li><a href="/search.html">🔍 Search</a></li>
+            <li><a href="/profile">👤 Profile</a></li>
+            <li><a href="/admin" class="active">⚙️ Admin</a></li>
+        </ul>
+        <div class="navbar-user">
+            <div class="user-info">
+                <div class="username" id="navUsername">User</div>
+                <span class="role-badge user" id="navRole">user</span>
+            </div>
+            <button class="btn btn-outline" onclick="logout()"
+                style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">Logout</button>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1>⚙️ Admin Panel</h1>
+            <p>System administration — Authorized personnel only</p>
+        </div>
+
+        <div class="admin-warning">
+            <div class="warning-icon">🔐</div>
+            <div>
+                <h3>Restricted Access</h3>
+                <p class="text-muted">This panel is restricted to administrators. Access is verified via JWT role claim.
+                </p>
+            </div>
+        </div>
+
+        <div id="adminContent" style="display:none;">
+            <div class="stats-grid">
+                <div class="stat-card accent-blue">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-label">Total Users</div>
+                    <div class="stat-value" id="totalUsers">-</div>
+                </div>
+                <div class="stat-card accent-green">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-label">Total Balance</div>
+                    <div class="stat-value" id="totalBalance">-</div>
+                </div>
+                <div class="stat-card accent-purple">
+                    <div class="stat-icon">🎫</div>
+                    <div class="stat-label">Open Tickets</div>
+                    <div class="stat-value" id="totalTickets">-</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>👥 All System Users</h3>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Full Name</th>
+                                <th>Role</th>
+                                <th>Created</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTable">
+                            <tr>
+                                <td colspan="6" class="text-center text-muted" style="padding:2rem;">Loading...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card mt-2">
+                <div class="card-header">
+                    <h3>🎫 All Support Tickets</h3>
+                </div>
+                <!-- VULNERABILITY: XSS — ticket content rendered with innerHTML -->
+                <div id="allTickets">
+                    <p class="text-muted text-center" style="padding: 2rem;">Loading tickets...</p>
+                </div>
+            </div>
+
+            <div class="card mt-2">
+                <div class="card-header">
+                    <h3>🛠️ Debug Information</h3>
+                </div>
+                <div id="debugInfo">
+                    <p class="text-muted text-center" style="padding: 2rem;">Loading debug data...</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="accessDenied" style="display:none;">
+            <div class="card text-center" style="padding: 3rem;">
+                <div style="font-size: 4rem; margin-bottom: 1rem;">🚫</div>
+                <h2>Access Denied</h2>
+                <p class="text-muted mt-1">You don't have admin privileges.</p>
+                <p class="text-muted mt-1" style="font-size: 0.85rem;">
+                    Hint: The role is stored in the JWT token and in localStorage...
+                </p>
+                <a href="/dashboard.html" class="btn btn-primary mt-2">Back to Dashboard</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>VulnBank © 2026 — Educational Purposes Only</p>
+
+    </footer>
+
+    <script src="/js/utils.js"></script>
+    <script src="/js/admin.js"></script>
+</body>
+
+</html>

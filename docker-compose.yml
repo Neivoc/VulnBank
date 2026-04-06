@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  vulnbank:
+    build: .
+    container_name: vulnbank
+    ports:
+      - "4000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    volumes:
+      - vulnbank_uploads:/app/uploads
+    restart: unless-stopped
+
+volumes:
+  vulnbank_uploads:
