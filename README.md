@@ -47,6 +47,29 @@ VulnBank contiene **8 vulnerabilidades** específicas para descubrir y explotar.
 
 ---
 
+## 📁 Estructura del Proyecto
+
+```text
+VulnBank/
+├── server.js           # API de Express.js (contiene las vulnerabilidades del Backend)
+├── database.js         # Configuración y "seed data" de SQLite3
+├── package.json        # Dependencias de Node.js
+├── Dockerfile          # Configuración del contenedor Node 18
+├── docker-compose.yml  # Orquestación del servicio (Expone puerto 4000)
+└── public/             # Archivos estáticos del Frontend
+    ├── index.html      # Inicio de sesión
+    ├── register.html   # Registro de cuenta
+    ├── dashboard.html  # Resumen de cuenta y balances
+    ├── transfer.html   # Vista de transferencias (Vulnerable a XSS)
+    ├── search.html     # Búsqueda de transacciones (Vulnerable a SQLi)
+    ├── profile.html    # Perfil y tickets de soporte (Vulnerable a File Upload & XSS)
+    ├── admin.html      # Panel administrativo oculto (Escalación de privilegios)
+    ├── css/style.css   # Estilos (Dark banking theme)
+    └── js/             # Archivos de lógica y estado interactivo (SPA)
+```
+
+---
+
 ## 💻 Tech Stack
 * **Backend:** Node.js, Express.js
 * **Database:** SQLite3
