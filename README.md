@@ -1,5 +1,7 @@
 # 🏦 VulnBank
 
+![VulnBank Cover Screenshot](assets/dashboard.png)
+
 **VulnBank** es una aplicación web bancaria deliberadamente vulnerable, construida con fines educativos y para la práctica de pruebas de penetración (*pentesting*). Simula una aplicación web moderna y realista con una elegante interfaz SPA (*Single Page Application*) utilizando *Dark Glassmorphism*, mientras que de forma intencional implementa prácticas de seguridad terribles en el *backend*.
 
 ⚠️ **ADVERTENCIA:** Esta aplicación es explícitamente vulnerable y **nunca** debe ser desplegada en producción ni ser accesible a través de internet público. Úsala únicamente en entornos locales y aislados con fines educativos.
